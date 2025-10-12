@@ -1,0 +1,2 @@
+numero_favorito=21
+print(numero_favorito)
