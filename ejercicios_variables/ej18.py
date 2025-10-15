@@ -1,0 +1,22 @@
+nombres = ["Messi", "Hamilton", "Justin"]
+# print(f"Buenas {nombres[0]}, te invito a mi cena")
+# print(f"Buenas {nombres[1]}, te invito a mi cena")
+# print(f"Buenas {nombres[2]}, te invito a mi cena")
+# print(f"{nombres[1]} lamentablemente no podra asistir")
+nombres[1]="Ronaldo"
+# print(f"Buenas {nombres[0]}, te invito a mi cena")
+# print(f"Buenas {nombres[1]}, te invito a mi cena")
+# print(f"Buenas {nombres[2]}, te invito a mi cena")
+# print("Hemos encontrado una mesa mas grande")
+nombres.insert(0, "Alonso")
+nombres.insert(2, "Nadal")
+nombres.append("Kroos")
+# print(f"Buenas {nombres[0]}, te invito a mi cena")
+# print(f"Buenas {nombres[1]}, te invito a mi cena")
+# print(f"Buenas {nombres[2]}, te invito a mi cena")
+# print(f"Buenas {nombres[3]}, te invito a mi cena")
+# print(f"Buenas {nombres[4]}, te invito a mi cena")
+# print(f"Buenas {nombres[5]}, te invito a mi cena")
+print("Solo se pueden invitar a 2 personas")
+for i in range(2):
+    nombres.pop()
