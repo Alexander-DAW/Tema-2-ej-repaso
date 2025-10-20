@@ -11,6 +11,11 @@ estudiantes["Ana"]=[18, ["Matemáticas", "Historia", "Programacion"]]
 del estudiantes["Carlos"]
 
 
-
 print(estudiantes)
 print(estudiantes["Ana"])
+print(estudiantes.get("Carlos")) #No existe con lo cual nos devuelve None
+print(list(estudiantes.keys()))
+print(list(estudiantes.values()))
+for i in estudiantes:
+    print(f"{i}: {estudiantes[i]}")
+
