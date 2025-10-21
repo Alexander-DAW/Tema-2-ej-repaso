@@ -1,36 +1,72 @@
 class Empleado:
+    _lista_dni = set()
     salario_medio = []
     def __init__(self, nombre , salario, dni):
         self.__nombre=nombre
         self.__salario=salario
         self.__dni=dni
+        if dni in Empleado._lista_dni:
+            raise ValueError(f"El DNI {dni} ya está en uso.")
+        Empleado._lista_dni.add(dni)
 
-    def get_nombre(self):
+    @property
+    def nombre(self):
         return self.__nombre
     
-    def get_salario(self):
+    @property
+    def salario(self):
         return self.__salario
     
-    def get_dni(self):
+    @property
+    def dni(self):
         return self.__dni
     
-    def set_nombre(self, nombre):
+    @nombre.setter
+    def nombre(self, nombre):
         self.__nombre = nombre
 
-    def set_salario(self, salario):
+    @salario.setter
+    def salario(self, salario):
         self.__salario = salario
 
-    def set_dni(self, dni):
+    @dni.setter
+    def dni(self, dni):
         self.__dni = dni
 
     def detalles(self):
         print(f'''Nombre: {self.get_nombre()},
               Salario: {self.get_salario()}.
               DNI: {self.get_dni()}''')
-    
+        
+    def __del__(self):
+        print(f"Objeto con DNI {self.dni} destruido.")        
+
     @classmethod
     def calcular_salario_medio(cls):
-        print(f"Salario medio: {cls.salario_medio  }")
+        print(f"Salario medio: {cls.salario_medio}")
+
+class Gerente:
+    def __init__(self, nombre , salario, dni, departamento):
+        super().__init__(nombre , salario, dni)
+        self.__departamento = departamento
+        super().detalles()
+
+    
+    @property
+    def departamento(self):
+        return self.__departamento
+    
+    @departamento.setter
+    def departamento(self, departamento):
+        self.__departamento = departamento
+    
+    def detalles(self):
+        print(f"Departamento: {self.departamento}")
+
+
+
+    
+    
 
 
 
