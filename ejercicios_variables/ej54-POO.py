@@ -39,7 +39,7 @@ class Empleado:
               DNI: {self.get_dni()}''')
         
     def __del__(self):
-        print(f"Objeto con DNI {self.dni} destruido.")        
+        print(f"Objeto con DNI {self.dni} destruido.")
 
     @classmethod
     def calcular_salario_medio(cls):
@@ -49,8 +49,6 @@ class Gerente:
     def __init__(self, nombre , salario, dni, departamento):
         super().__init__(nombre , salario, dni)
         self.__departamento = departamento
-        super().detalles()
-
     
     @property
     def departamento(self):
@@ -59,9 +57,16 @@ class Gerente:
     @departamento.setter
     def departamento(self, departamento):
         self.__departamento = departamento
+
+    def descuento_sueldo (self):
+        return self.salario - self.salario * 0.1
+    
+    @staticmethod
+    def impuesto(salario):
+        return salario * 1.21
     
     def detalles(self):
-        print(f"Departamento: {self.departamento}")
+        print (super().detalles() + (f"Departamento: {self.departamento}"))
 
 
 
