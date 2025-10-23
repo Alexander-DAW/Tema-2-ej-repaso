@@ -61,7 +61,7 @@ def calcula_media_puntuaciones(grupos, **kwargs):
             - ag (str, opcional): Nombre de la agrupacion a la que vamosa actualizar las puntuaciones
             - fase (str, opcional): Nombre de la fase a actualizar.
             - puntuaciones (list, opcional): Lista de puntucaiones adicionales para agregar a la fase.
-
+x
     Return: 
         - dict: Diccionario con las agrupaciones y su media de puntuación total. 
     """
