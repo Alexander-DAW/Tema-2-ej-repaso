@@ -73,4 +73,12 @@ def calcular_media_equipos(liga, **kwargs):
         print(f"Juego: {juego.upper()}\n{'-' * (11+len(juego))}")
 
         for equipo, jornadas in equipos.item():
-            print(f"")
+            if equipo_nombre.lower() == equipo.lower():
+                if jornada_nombre in jornadas:
+                    jornadas[jornada_nombre].extend(puntuaciones_adicionales)
+                else:
+                    jornadas[jornadas] = puntuaciones_adicionales
+            print(f"\nEquipo : {equipo}")
+
+            for jornadas, puntuaciones in jornadas.items():
+                puntuaciones_redondeadas = list(map(lambda puntuacion: round(puntuacion, 2), puntuaciones))
