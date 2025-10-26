@@ -46,7 +46,7 @@ liga = {
 }
 
 
-def calcular_media_equipos(liga, **kwargs):
+def calcular_media_puntuaciones(liga, **kwargs):
     """
     Calcula la media de las puntuaciones y mostrar datos de forma organizada
 
@@ -72,13 +72,30 @@ def calcular_media_equipos(liga, **kwargs):
     for juego, equipos in liga.items():
         print(f"Juego: {juego.upper()}\n{'-' * (11+len(juego))}")
 
-        for equipo, jornadas in equipos.item():
+        for equipo, jornadas in equipos.items():
             if equipo_nombre.lower() == equipo.lower():
                 if jornada_nombre in jornadas:
                     jornadas[jornada_nombre].extend(puntuaciones_adicionales)
                 else:
                     jornadas[jornadas] = puntuaciones_adicionales
             print(f"\nEquipo : {equipo}")
+            medias_por_jornada = []
 
-            for jornadas, puntuaciones in jornadas.items():
+            for jornada, puntuaciones in jornadas.items():
                 puntuaciones_redondeadas = list(map(lambda puntuacion: round(puntuacion, 2), puntuaciones))
+                media_jornada = sum(puntuaciones_redondeadas) / len (puntuaciones_redondeadas)
+                medias_por_jornada.append(media_jornada)
+                print(f" - {jornada}: Media = {round(media_jornada, 2)}\n")
+            
+            media_total = sum(medias_por_jornada) / len(medias_por_jornada)
+            resultado[equipo] = round(media_total, 2)
+
+            print(f"\nMEDIA TOTAL : {round(media_total)}") 
+        print("\n" + "=" * 50 + "\n")
+    print(resultado) 
+
+            
+
+            
+
+print(calcular_media_puntuaciones(liga, equipo="Valorant"))
