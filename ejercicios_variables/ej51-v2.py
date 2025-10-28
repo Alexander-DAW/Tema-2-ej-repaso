@@ -92,7 +92,7 @@ def calcular_media_puntuaciones(liga, **kwargs):
 
             print(f"\nMEDIA TOTAL : {round(media_total)}") 
         print("\n" + "=" * 50 + "\n")
-    print(resultado) 
+    print(resultado)
 
             
 
