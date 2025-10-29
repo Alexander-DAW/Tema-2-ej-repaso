@@ -28,9 +28,8 @@ class Reserva:
 
 class Hotel:
 
-    def __init__(self, reservas, costo_total):
+    def __init__(self, reservas):
         self.__reservas = reservas
-        self.costo_total = costo_total
 
     @property
     def reservas(self):
@@ -41,26 +40,27 @@ class Hotel:
         self.__reservas = reservas
 
     def agregar_reserva(self, reserva):
-        if reserva.nombre_cliente.lower() in self.reservas:
+        if reserva.nombre_cliente in self.reservas:
             raise ReservaExistenteError(reserva.nombre_cliente)
         else:
-            if self.reservas == None:
+            datos = {"Número de coches" : reserva.num_coches, "Tipo de habitación" :reserva.tipo_habitacion, "Noches" : reserva.num_noches, "Costo total" : self.calcular_costo(reserva)}
+            if self.reservas == {}:
                 self.reservas = {
-                    reserva.nombre_cliente : {"Número de coches" : reserva.num_coches, "Tipo de habitación" :reserva.tipo_habitacion}
+                    reserva.nombre_cliente : datos
                 }
-                return "Reserva realizada correctamente"
+                print("Reserva realizada correctamente")
             else:
-                datos = {"Número de coches" : reserva.num_coches, "Tipo de habitación" :reserva.tipo_habitacion}
                 self.reservas[reserva.nombre_cliente] = datos
-                return "Reserva realizada correctamente"
+                print("Reserva realizada correctamente")
         
         
     def cancelar_reserva(self, reserva):
         if reserva.nombre_cliente in self.reservas.keys():
             del self.reservas[reserva.nombre_cliente]
+            print("Reserva cancelada correctamente")
         else:
             raise ReservaInxistenteError(self.nombre_clientes)
-        return "Reserva cancelada correctamente"
+
 
     def calcular_costo(self, reserva):
         match reserva.tipo_habitacion.lower():
@@ -75,19 +75,33 @@ class Hotel:
             case _:
                 raise ValueError("Tipo de habitación no valida")
         coches_costo = reserva.num_coches * 10
-        costo_total = coches_costo + habitacion_costo
+        costo_total = coches_costo + habitacion_costo * reserva.num_noches
 
         return costo_total
     
     def mostrar_resumen_reservas(self):
-        contador_reservas = 0
+        contador_reservas = 1
         print(f"RESUMEN DE RESERVAS\n{'-' * 19}")
         for nombre, datos in self.reservas.items():
             print(f"Reserve número {contador_reservas}")
             print(f"Nombre del cliente: {nombre.capitalize()}")
             for nombre_dato, valor_dato in datos.items():
                 print(f"{nombre_dato}: {valor_dato}")
-            print(f"{'-' * 19}")
+            print(f"{'-' * 30}")  
+    
+
+reserva_1=Reserva("Alex", 3, "Familiar", 2)
+reserva_2=Reserva("Manolo", 2, "Suite", 2)
+
+hotel = Hotel({})
+
+hotel.agregar_reserva(reserva_1)
+hotel.agregar_reserva(reserva_2)
+hotel.mostrar_resumen_reservas
+hotel.mostrar_resumen_reservas()
+
+
+        
 
     
 
